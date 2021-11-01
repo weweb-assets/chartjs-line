@@ -1,10 +1,10 @@
 export default {
     editor: {
         label: {
-            fr: 'Chart - Pie',
-            en: 'Chart - Pie',
+            fr: 'Chart - Line',
+            en: 'Chart - Line',
         },
-        icon: 'fontawesome/solid/chart-pie',
+        icon: 'fontawesome/solid/chart-line',
     },
     properties: {
         legendPosition: {
@@ -54,8 +54,10 @@ export default {
             defaultValue: [
                 {
                     label: 'Millenium Falcon',
-                    backgroundColor: ['#055B90', '#69C3FA', '#099AF2', '#E2F3FE'],
-                    data: [100.0, 5.0, 70.0, 20.0],
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [100.0, 15.0, 62.0, 30.0],
+                    cubicInterpolationMode: 'monotone',
                 },
             ],
         },

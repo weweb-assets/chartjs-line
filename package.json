@@ -1,8 +1,8 @@
 {
-    "name": "chartjs-bar",
+    "name": "chartjs-line",
     "repository": {
         "type": "git",
-        "url": "https://github.com/weweb-assets/chartjs-vertical-bar"
+        "url": "https://github.com/weweb-assets/chartjs-line"
     },
     "version": "3.1.0",
     "scripts": {

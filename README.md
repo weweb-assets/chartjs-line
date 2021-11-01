@@ -1,6 +1,6 @@
-# CHARTJS-PIE
+# CHARTJS-LINE
 
-This is a section for Weweb. It's a very basic one with a background and a container
+This is a line chart element for Weweb.
 
 ## Installation
 

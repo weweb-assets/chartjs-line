@@ -1,6 +1,6 @@
 <template>
     <div class="chart-container" style="position: relative">
-        <canvas id="chartjs-pie"></canvas>
+        <canvas id="chartjs-line"></canvas>
     </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
     computed: {
         config() {
             return {
-                type: 'pie',
+                type: 'line',
                 data: {
                     labels: this.content.labels,
                     datasets: this.content.datasets,
@@ -76,7 +76,7 @@ export default {
     },
     methods: {
         initChart() {
-            const element = wwLib.getFrontDocument().getElementById('chartjs-pie');
+            const element = wwLib.getFrontDocument().getElementById('chartjs-line');
             this.chartInstance = new Chart(element, this.config);
         },
     },
