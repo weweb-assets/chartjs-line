@@ -1,6 +1,6 @@
 <template>
     <div class="chart-container" style="position: relative">
-        <canvas id="chartjs-line"></canvas>
+        <canvas class="chartjs-line"></canvas>
     </div>
 </template>
 
@@ -76,7 +76,7 @@ export default {
     },
     methods: {
         initChart() {
-            const element = wwLib.getFrontDocument().getElementById('chartjs-line');
+            const element = this.$el.querySelector('.chartjs-line');
             this.chartInstance = new Chart(element, this.config);
         },
     },
