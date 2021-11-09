@@ -1,6 +1,6 @@
 <template>
     <div class="chart-container" style="position: relative">
-        <canvas class="chartjs-line"></canvas>
+        <canvas ref="chartjsLine"></canvas>
     </div>
 </template>
 
@@ -12,9 +12,8 @@ export default {
     props: {
         content: { type: Object, required: true },
     },
-    data() {
-        this.chartInstance = null;
-        return this.chartInstance;
+    setup() {
+        return { chartInstance: null };
     },
     computed: {
         config() {
@@ -76,7 +75,7 @@ export default {
     },
     methods: {
         initChart() {
-            const element = this.$el.querySelector('.chartjs-line');
+            const element = this.$refs.chartjsLine;
             this.chartInstance = new Chart(element, this.config);
         },
     },
@@ -87,9 +86,5 @@ export default {
 .chart-container {
     width: inherit;
     height: inherit;
-    #chartjs-pie {
-        width: 100% !important;
-        height: 100% !important;
-    }
 }
 </style>
