@@ -54,8 +54,8 @@ export default {
             defaultValue: [
                 {
                     label: 'Millenium Falcon',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgb(21, 101, 192)',
+                    borderColor: 'rgb(21, 101, 192)',
                     data: [100.0, 15.0, 62.0, 30.0],
                     cubicInterpolationMode: 'monotone',
                 },
