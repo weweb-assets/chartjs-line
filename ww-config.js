@@ -60,6 +60,17 @@ export default {
             type: 'Color',
             options: { nullable: true },
         },
+        cubicInterpolationMode: {
+            label: 'Line mode',
+            type: 'TextRadioGroup',
+            options: {
+                choices: [
+                    { value: 'default', label: 'Default' },
+                    { value: 'monotone', label: 'Smooth' },
+                ],
+            },
+            defaultValue: 'default',
+        },
         startAtZero: {
             label: 'Start at zero',
             type: 'OnOff',
@@ -68,7 +79,7 @@ export default {
             defaultValue: true,
         },
         dataType: {
-            label: 'Configuration',
+            label: 'Mode',
             type: 'TextSelect',
             options: {
                 options: [
@@ -102,7 +113,6 @@ export default {
                     backgroundColor: 'rgb(21, 101, 192)',
                     borderColor: 'rgb(21, 101, 192)',
                     data: [100.0, 15.0, 62.0, 30.0],
-                    cubicInterpolationMode: 'monotone',
                 },
             ],
             hidden: content => content.dataType !== 'advanced',
@@ -166,6 +176,33 @@ export default {
                     typeof field[0] === 'object'
                 );
             },
+        },
+        dataOrderBy: {
+            label: 'Order by',
+            type: 'TextRadioGroup',
+            options: {
+                choices: [
+                    { value: 'default', label: 'Default' },
+                    { value: 'x', label: 'X value' },
+                    { value: 'y', label: 'Y value' },
+                ],
+            },
+            section: 'settings',
+            defaultValue: 'default',
+            hidden: content => !(content.dataType === 'guided' && isDataValid(content.data)),
+        },
+        dataDirection: {
+            type: 'TextRadioGroup',
+            options: {
+                choices: [
+                    { value: 'ASC', label: 'Ascending' },
+                    { value: 'DESC', label: 'Descending' },
+                ],
+            },
+            section: 'settings',
+            defaultValue: 'ASC',
+            hidden: content =>
+                !(content.dataType === 'guided' && content.dataType !== 'default' && isDataValid(content.data)),
         },
         dataXEmpty: {
             label: 'Include empty values',
@@ -238,12 +275,14 @@ export default {
             options: content => {
                 const data = (!content.data || Array.isArray(content.data) ? content.data : content.data.data) || [];
                 let field = _.get(data[0], content.dataYField);
-                if (Array.isArray(field) && field.length) field = _.get(field[0], content.dataYFieldProperty);
+                const isArray = Array.isArray(field);
+                if (Array.isArray(field) && field.length) field = _.get(field[0], content.dataYFieldProperty, field[0]);
                 const isNumber = Number.isFinite(data[0] && content.dataYField && field);
                 return {
                     placeholder: 'Select',
                     options: [
                         { value: 'distinct', label: 'Distinct' },
+                        isNumber && !isArray ? { value: 'value', label: 'Value' } : null,
                         isNumber ? { value: 'sum', label: 'Sum' } : null,
                         isNumber ? { value: 'average', label: 'Average' } : null,
                         isNumber ? { value: 'median', label: 'Median' } : null,
@@ -277,6 +316,7 @@ export default {
                     content.dataType === 'guided' &&
                     (content.yAxis === 'item-count' ||
                         content.aggregate === 'distinct' ||
+                        content.aggregate === 'value' ||
                         content.aggregate === 'sum') &&
                     isDataValid(content.data) &&
                     isDataArrayObject(content.data)
