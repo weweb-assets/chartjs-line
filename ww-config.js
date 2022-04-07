@@ -61,12 +61,12 @@ export default {
             options: { nullable: true },
         },
         cubicInterpolationMode: {
-            label: 'Line mode',
-            type: 'TextRadioGroup',
+            label: 'Line style',
+            type: 'TextSelect',
             options: {
                 choices: [
-                    { value: 'default', label: 'Default' },
-                    { value: 'monotone', label: 'Smooth' },
+                    { value: 'default', label: 'Sharp' },
+                    { value: 'monotone', label: 'Rounded' },
                 ],
             },
             defaultValue: 'default',
