@@ -62,7 +62,7 @@ export default {
         },
         cubicInterpolationMode: {
             label: 'Line style',
-            type: 'TextSelect',
+            type: 'TextRadioGroup',
             options: {
                 choices: [
                     { value: 'default', label: 'Sharp' },
