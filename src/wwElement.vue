@@ -204,6 +204,7 @@ export default {
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
+                            display: this.content.isLegend,
                             position: this.content.legendPosition,
                             align: this.content.legendAlignement,
                             labels: {
@@ -248,6 +249,10 @@ export default {
         },
         'config.data.labels'() {
             this.chartInstance.data.labels = this.config.data.labels;
+            this.chartInstance.update();
+        },
+        'content.isLegend'() {
+            this.chartInstance.options.plugins.legend.display = this.content.isLegend;
             this.chartInstance.update();
         },
         'content.legendPosition'() {
