@@ -11,6 +11,25 @@ export default {
     editor: {
         label: 'Chart - Line',
         icon: 'fontawesome/solid/chart-line',
+        customStylePropertiesOrder: [
+            ['legendPosition', 'legendAlignement', 'legendColor', 'legendSize', 'legendColor'],
+        ],
+        customSettingsPropertiesOrder: [
+            'dataType',
+            ['labels', 'datasets'],
+            'data',
+            [
+                'dataError',
+                'xAxisTitle',
+                'dataXField',
+                'dataXFieldProperty',
+                'dataOrderBy',
+                'dataDirection',
+                'dataXEmpty',
+            ],
+            ['yAxis', 'dataYField', 'dataYFieldProperty', 'aggregate', 'groupBy', 'groupByProperty'],
+            ['colors'],
+        ],
     },
     properties: {
         isLegend: {
