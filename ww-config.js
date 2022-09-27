@@ -24,14 +24,7 @@ export default {
             ['labels', 'datasets'],
             'data',
             'dataError',
-            [
-                'xAxisTitle',
-                'dataXField',
-                'dataXFieldProperty',
-                'dataOrderBy',
-                'dataDirection',
-                'dataXEmpty',
-            ],
+            ['xAxisTitle', 'dataXField', 'dataXFieldProperty', 'dataOrderBy', 'dataDirection', 'dataXEmpty'],
             ['yAxis', 'dataYField', 'dataYFieldProperty', 'aggregate', 'groupBy', 'groupByProperty'],
             ['colors'],
         ],
@@ -43,10 +36,10 @@ export default {
             bindable: true,
             responsive: true,
             defaultValue: true,
-             /* wwEditor:start */
-             bindingValidation: {
+            /* wwEditor:start */
+            bindingValidation: {
                 type: 'boolean',
-                tooltip: 'A boolean that define if the legend is displayed: `true | false`',
+                tooltip: 'A boolean that defines if the legend is displayed: `true | false`',
             },
             /* wwEditor:end */
         },
@@ -65,10 +58,10 @@ export default {
             responsive: true,
             defaultValue: 'top',
             hidden: content => !content.isLegend,
-             /* wwEditor:start */
-             bindingValidation: {
+            /* wwEditor:start */
+            bindingValidation: {
                 type: 'string',
-                tooltip: 'A string that define the legend position: `top | bottom | left | right`',
+                tooltip: 'A string that defines the legend position: `top | bottom | left | right`',
             },
             /* wwEditor:end */
         },
@@ -86,10 +79,10 @@ export default {
             responsive: true,
             defaultValue: 'center',
             hidden: content => !content.isLegend,
-              /* wwEditor:start */
-              bindingValidation: {
+            /* wwEditor:start */
+            bindingValidation: {
                 type: 'string',
-                tooltip: 'A string that define the legend alignment: `start | center | end`',
+                tooltip: 'A string that defines the legend alignment: `start | center | end`',
             },
             /* wwEditor:end */
         },
@@ -130,6 +123,12 @@ export default {
             bindable: true,
             responsive: true,
             defaultValue: true,
+            /* wwEditor:start */
+            bindingValidation: {
+                type: 'boolean',
+                tooltip: 'A boolean that defines if the start at zero option: `true | false`',
+            },
+            /* wwEditor:end */
         },
         dataType: {
             label: 'Mode',
@@ -152,8 +151,8 @@ export default {
             bindable: 'list',
             defaultValue: ['Tatooine', 'Coruscant', 'Kashyyyk', 'Dagobah'],
             hidden: content => content.dataType !== 'advanced',
-             /* wwEditor:start */
-             bindingValidation: {
+            /* wwEditor:start */
+            bindingValidation: {
                 type: 'array',
                 tooltip: propertiesTooltips['labels'],
             },
@@ -175,8 +174,8 @@ export default {
                 },
             ],
             hidden: content => content.dataType !== 'advanced',
-              /* wwEditor:start */
-              bindingValidation: {
+            /* wwEditor:start */
+            bindingValidation: {
                 type: 'array',
                 tooltip: propertiesTooltips['datasets'],
             },
@@ -191,8 +190,8 @@ export default {
             bindable: 'list',
             defaultValue: null,
             hidden: content => content.dataType !== 'guided',
-             /* wwEditor:start */
-             bindingValidation: {
+            /* wwEditor:start */
+            bindingValidation: {
                 type: 'array',
                 tooltip: 'A collection of data in array format: `[{}, {}, ...]`',
             },
@@ -434,8 +433,8 @@ export default {
             defaultValue: [],
             bindable: true,
             hidden: content => !(content.dataType === 'guided' && isDataValid(content.data)),
-             /* wwEditor:start */
-             bindingValidation: {
+            /* wwEditor:start */
+            bindingValidation: {
                 type: 'array',
                 tooltip: 'A collection of colors: `[color1, color2, ...]`',
             },
