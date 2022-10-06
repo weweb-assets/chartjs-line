@@ -17,17 +17,10 @@ export default {
         ],
         customSettingsPropertiesOrder: [
             'dataType',
-            ['labels', 'datasets'],
+            ['labels', 'datasets', 'options'],
             'data',
             'dataError',
-            [
-                'xAxisTitle',
-                'dataXField',
-                'dataXFieldProperty',
-                'dataOrderBy',
-                'dataDirection',
-                'dataXEmpty',
-            ],
+            ['xAxisTitle', 'dataXField', 'dataXFieldProperty', 'dataOrderBy', 'dataDirection', 'dataXEmpty'],
             ['yAxis', 'dataYField', 'dataYFieldProperty', 'aggregate', 'groupBy', 'groupByProperty'],
             ['colors'],
         ],
@@ -146,6 +139,32 @@ export default {
                     data: [100.0, 15.0, 62.0, 30.0],
                 },
             ],
+            hidden: content => content.dataType !== 'advanced',
+        },
+        options: {
+            label: 'Options',
+            type: 'Info',
+            options: {
+                text: 'Chart options',
+            },
+            responsive: true,
+            section: 'settings',
+            bindable: 'list',
+            defaultValue: {
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'left',
+                        align: 'start',
+                        labels: {
+                            usePointStyle: true,
+                            color: 'black',
+                            font: { size: 12 },
+                        },
+                    },
+                },
+                responsive: true,
+            },
             hidden: content => content.dataType !== 'advanced',
         },
         data: {
