@@ -16,6 +16,49 @@ export default {
         return { chartInstance: null };
     },
     computed: {
+        options() {
+            const guidedOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: this.content.isLegend,
+                        position: this.content.legendPosition,
+                        align: this.content.legendAlignement,
+                        labels: {
+                            usePointStyle: true,
+                            color: this.content.legendColor,
+                            font: { size: parseInt(this.content.legendSize) },
+                        },
+                    },
+                },
+                elements: {
+                    line: {
+                        cubicInterpolationMode: this.content.cubicInterpolationMode,
+                    },
+                },
+                scales: {
+                    x: {
+                        grid: { color: this.content.gridColor, borderColor: this.content.gridColor },
+                        ticks: {
+                            color: this.content.legendColor,
+                            font: { size: parseInt(this.content.legendSize) },
+                        },
+                    },
+                    y: {
+                        grid: { color: this.content.gridColor, borderColor: this.content.gridColor },
+                        ticks: {
+                            color: this.content.legendColor,
+                            font: { size: parseInt(this.content.legendSize) },
+                        },
+                        beginAtZero: this.content.startAtZero,
+                    },
+                },
+            };
+
+            const advancedOptions = typeof this.content.options === 'object' ? this.content.options : guidedOptions;
+            return this.content.dataType === 'advanced' ? advancedOptions : guidedOptions;
+        },
         config() {
             let labels = [];
             let datasets = [];
@@ -199,44 +242,7 @@ export default {
                     labels,
                     datasets,
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: this.content.isLegend,
-                            position: this.content.legendPosition,
-                            align: this.content.legendAlignement,
-                            labels: {
-                                usePointStyle: true,
-                                color: this.content.legendColor,
-                                font: { size: parseInt(this.content.legendSize) },
-                            },
-                        },
-                    },
-                    elements: {
-                        line: {
-                            cubicInterpolationMode: this.content.cubicInterpolationMode,
-                        },
-                    },
-                    scales: {
-                        x: {
-                            grid: { color: this.content.gridColor, borderColor: this.content.gridColor },
-                            ticks: {
-                                color: this.content.legendColor,
-                                font: { size: parseInt(this.content.legendSize) },
-                            },
-                        },
-                        y: {
-                            grid: { color: this.content.gridColor, borderColor: this.content.gridColor },
-                            ticks: {
-                                color: this.content.legendColor,
-                                font: { size: parseInt(this.content.legendSize) },
-                            },
-                            beginAtZero: this.content.startAtZero,
-                        },
-                    },
-                },
+                options: this.options,
             };
         },
     },
@@ -246,6 +252,15 @@ export default {
             if (this.chartInstance) this.chartInstance.destroy();
             this.initChart();
             this.chartInstance.update();
+        },
+        options: {
+            deep: true,
+            handler() {
+                this.chartInstance.data.datasets = this.config.data.datasets;
+                if (this.chartInstance) this.chartInstance.destroy();
+                this.initChart();
+                this.chartInstance.update();
+            },
         },
         'config.data.labels'() {
             this.chartInstance.data.labels = this.config.data.labels;
@@ -364,5 +379,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
