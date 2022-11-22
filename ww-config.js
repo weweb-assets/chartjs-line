@@ -106,6 +106,7 @@ export default {
             label: 'Grid color',
             type: 'Color',
             options: { nullable: true },
+            hidden: content => content.dataType === 'advanced',
         },
         cubicInterpolationMode: {
             label: 'Line style',
@@ -117,6 +118,7 @@ export default {
                 ],
             },
             defaultValue: 'default',
+            hidden: content => content.dataType === 'advanced',
         },
         startAtZero: {
             label: 'Start at zero',
@@ -124,6 +126,7 @@ export default {
             bindable: true,
             responsive: true,
             defaultValue: true,
+            hidden: content => content.dataType === 'advanced',
             /* wwEditor:start */
             bindingValidation: {
                 type: 'boolean',
