@@ -238,7 +238,7 @@ export default {
             type: 'Info',
             options: { text: 'Bind collection data' },
             section: 'settings',
-            bindable: true,
+            bindable: "list",
             responsive: true,
             states: true,
             defaultValue: null,
