@@ -36,6 +36,7 @@ export default {
             bindable: true,
             responsive: true,
             states: true,
+            classes: true,
             defaultValue: true,
             hidden: content => content.dataType === 'advanced',
             /* wwEditor:start */
@@ -59,6 +60,7 @@ export default {
             bindable: true,
             responsive: true,
             states: true,
+            classes: true,
             defaultValue: 'top',
             hidden: content => content.dataType === 'advanced' || !content.isLegend,
             /* wwEditor:start */
@@ -81,6 +83,7 @@ export default {
             bindable: true,
             responsive: true,
             states: true,
+            classes: true,
             defaultValue: 'center',
             hidden: content => content.dataType === 'advanced' || !content.isLegend,
             /* wwEditor:start */
@@ -99,6 +102,7 @@ export default {
             bindable: true,
             responsive: true,
             states: true,
+            classes: true,
             defaultValue: '12px',
             hidden: content => content.dataType === 'advanced' || !content.isLegend,
         },
@@ -109,6 +113,7 @@ export default {
             bindable: true,
             responsive: true,
             states: true,
+            classes: true,
             hidden: content => content.dataType === 'advanced' || !content.isLegend,
         },
         gridColor: {
@@ -118,6 +123,7 @@ export default {
             bindable: true,
             responsive: true,
             states: true,
+            classes: true,
             hidden: content => content.dataType === 'advanced',
         },
         cubicInterpolationMode: {
