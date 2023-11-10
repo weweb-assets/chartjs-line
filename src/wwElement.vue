@@ -246,13 +246,12 @@ export default {
                     datasets,
                 },
                 options: {
-                    ...this.options,
                     onClick: e => {
                         const position = getRelativePosition(e, this.chartInstance);
                         const points = this.chartInstance.getElementsAtEventForMode(
                             e,
-                            'nearest',
-                            { intersect: true },
+                            this.options?.interaction?.mode || 'nearest',
+                            { intersect: this.options?.interaction?.intersect ?? true },
                             true
                         );
 
@@ -268,14 +267,20 @@ export default {
                                 points: points.map(point => ({
                                     datasetLabel: this.chartInstance.data.datasets[point.datasetIndex].label,
                                     label: this.chartInstance.data.labels[point.index],
-                                    value: typeof this.chartInstance.data.datasets[point.datasetIndex].data[point.index] === 'object' ?
-                                        this.chartInstance.data.datasets[point.datasetIndex].data[point.index][this.content.axis === 'x' ? 'y' : 'x'] :
-                                        this.chartInstance.data.datasets[point.datasetIndex].data[point.index],
+                                    value:
+                                        typeof this.chartInstance.data.datasets[point.datasetIndex].data[
+                                            point.index
+                                        ] === 'object'
+                                            ? this.chartInstance.data.datasets[point.datasetIndex].data[point.index][
+                                                  this.content.axis === 'x' ? 'y' : 'x'
+                                              ]
+                                            : this.chartInstance.data.datasets[point.datasetIndex].data[point.index],
                                     ...point,
                                 })),
                             },
                         });
                     },
+                    ...this.options,
                 },
             };
         },
