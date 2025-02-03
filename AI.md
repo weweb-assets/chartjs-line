@@ -21,10 +21,10 @@ Component Purpose: Renders a line chart using Chart.js library with guided or ad
 
 Properties:
 - dataType: 'guided' | 'advanced' - Chart mode
-- labels: string[] - X-axis labels (binded formula)
-- datasets: object[] - Dataset objects with label, backgroundColor, borderColor, data (binded formula)
-- options: object - Advanced chart options (binded formula)
-- data: object[] - Data array for guided mode
+- labels: binded<string[]> - X-axis labels. advanced mode only.
+- datasets: binded<object[]> - Dataset objects with label, backgroundColor, borderColor, data keys. advanced mode only.
+- options: binded<object> - Advanced chart options. advanced mode only.
+- data: binded<object[]> - Data array. guided mode only.
 - xAxisTitle: string - X-axis title
 - dataXField: string - X-axis data field
 - dataXFieldProperty: string - X-axis field property for arrays
@@ -56,10 +56,15 @@ Events:
     dataX: any,
     dataY: any,
     position: {x: number, y: number},
-    points: [{label: string, value: number, index: number, datasetIndex: number}]
+    points:[{label: string, value: number, index: number, datasetIndex: number}]
   }
   Description: Triggered when user clicks on the chart, providing clicked data point information
 
 Variables: none
 
-Note: To make graph responsive and contained, set max-width: 100% and height: auto. Set min-width: 0px to direct parent container.
+Note: 
+- To make graph responsive: First, always set these options : responsive: true and maintainAspectRatio: false, Second, set min-width: 0px to direct parent container.
+
+Exemple:
+
+{"uid":"chartjs-line-dca","tag":"chartjs-line","name":"Investment Comparison Chart","props":{"default":{"dataType":"advanced","labels":{"__wwtype":"f","code":"["Month 1","Month 2","Month 3","Month 4","Month 5","Month 6"]"},"datasets":{"__wwtype":"f","code":"[{"label": "DCA Investment","data":[1000,2050,3150,4300,5500,6750],"borderColor": "#3b82f6","backgroundColor": "rgba(59, 130, 246, 0.1)","tension": 0.4},{"label": "Lump Sum Investment","data":[6000,6120,6300,6480,6600,6700],"borderColor": "#10b981","backgroundColor": "rgba(16, 185, 129, 0.1)","tension": 0.4}]"},"options":{"__wwtype":"f","code":"{responsive: true,maintainAspectRatio: false,interaction: {intersect: false,mode: 'index'},plugins: {title: {display: true,text: 'Investment Growth Over Time',font: {  size: 16,weight: 'bold'  },padding: 20},legend: {position: 'top',labels: {  usePointStyle: true,padding: 20,font:{size: 14}  }},tooltip: {backgroundColor: 'rgba(255, 255, 255, 0.9)',titleColor: '#1e293b',bodyColor: '#1e293b',borderColor: '#e2e8f0',borderWidth: 1,padding: 12,displayColors: true,callbacks: {label: function(context){return context.dataset.label + ': $' + context.parsed.y.toLocaleString()}  }}},scales: {x: {grid: {display: false  },ticks: {  font:{size: 12}  }},y: {beginAtZero: true,grid: {  color: '#f1f5f9'  },ticks: {font:{size: 12},callback: function(value){return '$' + value.toLocaleString()}}}}n}"},"isLegend":true,"legendPosition":"top","legendAlignement":"center","legendSize":"12px","cubicInterpolationMode":"default","startAtZero":true,"dataOrderBy":"default","dataDirection":"ASC","dataXEmpty":false,"yAxis":"item-count","aggregate":"distinct"},"styles":{"default":{"width":"100%","height":"100%"}}},"styles":{"default":{"height":"400px","aspectRatio":"unset"}}}
