@@ -235,8 +235,15 @@ export default {
                 }
                 labels = [...new Set(datasets.map(dataset => dataset.data.map(elem => elem.x)).flat())];
             } else {
-                labels = this.content.labels;
-                datasets = this.content.datasets || [];
+                if(!this.content.labels) {
+                    labels = [];
+                } else if(!Array.isArray(this.content.labels)) {
+                    labels = Object.values(this.content.labels);
+                } else {
+                    labels = this.content.labels;
+                }
+
+                datasets = Array.isArray(this.content.datasets) ? this.content.datasets : [];
             }
 
             return {
